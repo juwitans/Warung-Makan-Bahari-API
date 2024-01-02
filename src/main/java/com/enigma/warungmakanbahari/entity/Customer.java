@@ -1,8 +1,11 @@
 package com.enigma.warungmakanbahari.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,4 +24,7 @@ public class Customer {
     private String address;
     @OneToOne
     private User user;
+    @OneToMany
+    @JsonManagedReference
+    List<Order> orders;
 }

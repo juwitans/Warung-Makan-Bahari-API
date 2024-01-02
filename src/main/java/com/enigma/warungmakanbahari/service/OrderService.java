@@ -10,4 +10,5 @@ public interface OrderService {
     Order create(OrderRequest request);
     Order getById(String id);
     List<Order> getAll(SearchOrderRequest request);
+    List<Order> getByCustomerId(String id);
 }

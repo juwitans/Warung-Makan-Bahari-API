@@ -81,6 +81,11 @@ public class OrderServiceImpl implements OrderService {
         return orders;
     }
 
+    @Override
+    public List<Order> getByCustomerId(String id) {
+        return orderRepository.findByCustomer_Id(id);
+    }
+
     private Specification<Order> getOrderSpecification(SearchOrderRequest request) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();

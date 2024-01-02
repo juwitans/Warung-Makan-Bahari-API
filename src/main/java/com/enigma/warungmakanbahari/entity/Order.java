@@ -1,5 +1,6 @@
 package com.enigma.warungmakanbahari.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,6 +20,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "customer_id")
     private Customer customer;
     @ManyToOne

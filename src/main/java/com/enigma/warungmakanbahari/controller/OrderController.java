@@ -70,4 +70,16 @@ public class OrderController {
                 .build();
         return ResponseEntity.ok(response);
     }
+
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'ADMIN','CUSTOMER')")
+    @GetMapping(path = "/:{customerId}")
+    public ResponseEntity<?> getOrderByCustomerId(@PathVariable String customerId) {
+        List<Order> orders = orderService.getByCustomerId(customerId);
+        WebResponse<List<Order>> response = WebResponse.<List<Order>>builder()
+                .message("successfully get order by id")
+                .status(HttpStatus.OK.getReasonPhrase())
+                .data(orders)
+                .build();
+        return ResponseEntity.ok(response);
+    }
 }
