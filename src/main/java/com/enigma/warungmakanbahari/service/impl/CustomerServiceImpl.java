@@ -48,6 +48,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer get(String id) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()) return optionalCustomer.get();
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer not found");
+    }
+
+    @Override
     public CustomerResponse update(Customer customer) {
         Optional<Customer> optionalCustomer = customerRepository.findById(customer.getId());
         if (optionalCustomer.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "customer not found");

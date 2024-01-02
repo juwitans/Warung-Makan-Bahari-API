@@ -10,6 +10,7 @@ public interface CustomerService {
     Customer create(Customer customer);
     List<CustomerResponse> getAll(CustomerRequest request);
     CustomerResponse getById(String id);
+    Customer get(String id);
     CustomerResponse update(Customer customer);
     void deleteById(String id);
 }

@@ -39,7 +39,7 @@ public class CustomerController {
     }
 
     @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'ADMIN')")
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/:{id}")
     public ResponseEntity<?> getCustomerById(@PathVariable String id) {
         CustomerResponse customer = customerService.getById(id);
         WebResponse<CustomerResponse> response = WebResponse.<CustomerResponse>builder()
@@ -65,7 +65,7 @@ public class CustomerController {
     }
 
     @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'ADMIN')")
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/:{id}")
     public ResponseEntity<?> deleteMenu(@PathVariable String id) {
         customerService.deleteById(id);
         WebResponse<String> response = WebResponse.<String>builder()

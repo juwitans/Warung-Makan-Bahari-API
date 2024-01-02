@@ -42,7 +42,7 @@ public class TableController {
     }
 
     @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'ADMIN')")
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/:{id}")
     public ResponseEntity<?> getTableById(@PathVariable String id) {
         TableInfo table = tableService.getById(id);
         WebResponse<TableInfo> response = WebResponse.<TableInfo>builder()
@@ -68,7 +68,7 @@ public class TableController {
     }
 
     @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'ADMIN')")
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/:{id}")
     public ResponseEntity<?> deleteTable(@PathVariable String id) {
         tableService.delete(id);
         WebResponse<String> response = WebResponse.<String>builder()

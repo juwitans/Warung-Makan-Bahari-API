@@ -54,6 +54,15 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    public Menu get(String id) {
+        Optional<Menu> optionalMenu = menuRepository.findById(id);
+
+        if (optionalMenu.isPresent()) optionalMenu.get();
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "menu not found");
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public MenuResponse update(Menu menu) {
         Optional<Menu> optionalMenu = menuRepository.findById(menu.getId());
         if (optionalMenu.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "menu not found");

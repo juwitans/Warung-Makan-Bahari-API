@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/menu")
+@RequestMapping(path = "/api/menus")
 @RequiredArgsConstructor
 public class MenuController {
     private final MenuService menuService;
@@ -52,7 +52,7 @@ public class MenuController {
     }
 
     @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'ADMIN')")
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/:{id}")
     public ResponseEntity<?> getMenuById(@PathVariable String id) {
         MenuResponse menu = menuService.getById(id);
         WebResponse<MenuResponse> response = WebResponse.<MenuResponse>builder()
@@ -78,7 +78,7 @@ public class MenuController {
     }
 
     @PreAuthorize("hasAnyRole('SUPER_ADMIN', 'ADMIN')")
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping(path = "/:{id}")
     public ResponseEntity<?> deleteMenu(@PathVariable String id) {
         menuService.delete(id);
         WebResponse<String> response = WebResponse.<String>builder()
